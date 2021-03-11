@@ -1,0 +1,14 @@
+.container {
+  background-color: blanchedalmond;
+  max-width: 50%;
+  place-items: center;
+  margin: 100px auto;
+  padding: 30px;
+  border: 2px salmon solid;
+}
+.remember-container {
+  margin-top: 17px;
+}
+.btn-register {
+  margin-left: 17px;
+}

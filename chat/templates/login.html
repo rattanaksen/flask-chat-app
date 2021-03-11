@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block container %}
+<form action="/auth/login" method="POST">
+    <div class="form-floating mb-3">
+      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+      <label for="floatingInput">Email address</label>
+    </div>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+      <label>{{ message }}</label>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <div class="form-floating">
+      <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+      <label for="floatingPassword">Password</label>
+    </div>
+    <div class="remember-container">
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Remember Me</label>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>    
+    <a class="btn btn-secondary btn-register" href="/auth/register">Register</a>
+  </form>
+{% endblock %}

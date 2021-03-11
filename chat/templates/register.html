@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}Register{% endblock %}
+{% block container %}
+<form class="row g-3 needs-validation" action="/auth/register/create" method="POST" novalidate>
+    <div class="col-md-6">
+      <label for="validationCustom01" class="form-label">First name</label>
+      <input type="text" class="form-control" id="validationCustom01" name="firstName" required>
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label for="validationCustom02" class="form-label">Last name</label>
+      <input type="text" class="form-control" id="validationCustom02" name="lastName" required>
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+    </div>
+
+    <div class="col-12">
+      <label for="validationCustom03" class="form-label">Email</label>
+      <input type="email" class="form-control" id="validationCustom03" name="email" required>
+      <div class="invalid-feedback">
+        Please enter vaild email
+      </div>
+    </div>
+    <div class="col-12">
+      <label for="validationCustom04" class="form-label">Password</label>
+      <input type="password" class="form-control" id="validationCustom04" name="password" required>
+      <div class="invalid-feedback">
+        Please enter vaild password
+      </div>
+    </div>
+  
+    <div class="col-12">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+        <label class="form-check-label" for="invalidCheck">
+          Agree to terms and conditions
+        </label>
+        <div class="invalid-feedback">
+          You must agree before submitting.
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <button class="btn btn-primary" type="submit">Submit</button>
+    </div>
+  </form>
+
+{% endblock%}
+
