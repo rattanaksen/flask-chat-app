@@ -13,4 +13,7 @@ def init_app():
     def index():
         return render_template('base.html')
 
+    @app.route('/forgot_password')
+    def forgot_password():
+        return render_template('forgot_password.html')
     return app

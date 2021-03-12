@@ -12,7 +12,7 @@ def login():
 
 
 @bp.route('/session', methods=['POST'])
-def session():
+def create_session():
     loginEmail = request.form['loginEmail']
     loginPassword = request.form['loginPassword']
     for email, password in user_in_database:
@@ -21,6 +21,13 @@ def session():
                 return "Login success"
     flash("Incorrect email or password")
     return redirect(url_for('auth.login'))
+
+
+@bp.route('/reset', methods=['POST'])
+def reset():
+    reset_email = request.form['reset_email']
+    print(reset_email)
+    return "yee"
 
 
 @bp.route('/logout')
