@@ -18,12 +18,3 @@ class User(Base):
 
     def __iter__(self):
         return iter((self.email, self.password))
-
-
-if __name__ == "__main__":
-    Base.metadata.create_all()
-    new_user = User(first_name="Skywalker", last_name="Luke",
-                    email="lukeskywalker@outlook.com", password="1203")
-
-    session.add(new_user)
-    session.commit()
