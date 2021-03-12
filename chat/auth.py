@@ -3,7 +3,6 @@ from .model import session, User
 
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
-user_in_database = session.query(User).all()
 
 
 @bp.route('/login')
@@ -13,6 +12,7 @@ def login():
 
 @bp.route('/session', methods=['POST'])
 def create_session():
+    user_in_database = session.query(User).all()
     loginEmail = request.form['loginEmail']
     loginPassword = request.form['loginPassword']
     for email, password in user_in_database:
@@ -42,6 +42,7 @@ def register():
 
 @bp.route('/register/create', methods=['POST'])
 def create_user():
+    user_in_database = session.query(User).all()
     for each_user in user_in_database:
         if request.form['email'] in each_user.email:
             flash('Email is already exists')
