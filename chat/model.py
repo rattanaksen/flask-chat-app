@@ -16,6 +16,9 @@ class User(Base):
     email = Column(String)
     password = Column(String)
 
+    def __iter__(self):
+        return iter((self.email, self.password))
+
 
 if __name__ == "__main__":
     Base.metadata.create_all()

@@ -1,13 +1,26 @@
-from flask import Blueprint, flash, request, redirect, jsonify, render_template, url_for
+from flask import Blueprint, flash, request, redirect, jsonify, render_template, url_for, session as session_flask
 from .model import session, User
 
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
+user_in_database = session.query(User).all()
 
 
 @bp.route('/login')
 def login():
     return render_template('login.html')
+
+
+@bp.route('/session', methods=['POST'])
+def session():
+    loginEmail = request.form['loginEmail']
+    loginPassword = request.form['loginPassword']
+    for email, password in user_in_database:
+        if loginEmail == email:
+            if loginPassword == password:
+                return "Login success"
+    flash("Incorrect email or password")
+    return redirect(url_for('auth.login'))
 
 
 @bp.route('/logout')
@@ -22,7 +35,6 @@ def register():
 
 @bp.route('/register/create', methods=['POST'])
 def create_user():
-    user_in_database = session.query(User).all()
     for each_user in user_in_database:
         if request.form['email'] in each_user.email:
             flash('Email is already exists')
