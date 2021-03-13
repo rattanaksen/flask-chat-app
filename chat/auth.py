@@ -1,5 +1,8 @@
-from flask import Blueprint, flash, request, redirect, jsonify, render_template, url_for, session as session_flask
+from chat import init_app
+from flask_mail import Mail, Message
 from .model import session, User
+from flask import Blueprint, Flask, current_app, flash, request, redirect, jsonify, render_template, url_for, session as session_flask
+import jwt
 
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
@@ -10,7 +13,7 @@ def login():
     return render_template('login.html')
 
 
-@bp.route('/session', methods=['POST'])
+@bp.route('/create_session', methods=['POST'])
 def create_session():
     user_in_database = session.query(User).all()
     loginEmail = request.form['loginEmail']
@@ -25,9 +28,27 @@ def create_session():
 
 @bp.route('/reset', methods=['POST'])
 def reset():
-    reset_email = request.form['reset_email']
-    print(reset_email)
-    return "yee"
+    app = init_app()
+    with app.app_context():
+        reset_email = request.form['reset_email']
+        user_in_database = session.query(User).all()
+        for user_email in user_in_database:
+            if reset_email in user_email.email:
+                encoded_password = jwt.encode(
+                    {"pas": user_email.password}, "secret", algorithm="HS256")
+                mail = Mail(current_app)
+                msg = Message("Reset Password", recipients=[reset_email])
+                msg.body = f'http://127.0.0.1:5000/change_passoword?token={encoded_password}'
+                mail.send(msg)
+                flash("Email sent")
+                return redirect('/auth/login')
+    flash('Email does not exists')
+    return redirect(url_for('auth.login'))
+
+
+@bp.route('/create_new_password')
+def create_new_password():
+    return render_template('create_password.html')
 
 
 @bp.route('/logout')
