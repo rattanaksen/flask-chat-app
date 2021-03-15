@@ -1,2 +1,4 @@
 venv
 chat.db
+config.py
+.flaskenv

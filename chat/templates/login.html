@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}Login{% endblock %}
 {% block container %}
-<form action="/auth/create_session" method="POST">
+<form action="/auth/login/create_session" method="POST">
     <div class="form-floating mb-3">
       <input type="email" class="form-control"  name="loginEmail" placeholder="name@example.com" required>
       <label for="floatingInput">Email address</label>
@@ -21,7 +21,7 @@
       <div class="mb-3 form-check">
         <input type="checkbox" class="form-check-input" id="exampleCheck1">
         <label class="form-check-label" for="exampleCheck1">Remember Me</label>
-        <a class="mb3 forgot-password" href="/forgot_password">Forgot Password</a>
+        <a class="mb3 forgot-password" href="/auth/reset_password">Forgot Password</a>
       </div>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>    
