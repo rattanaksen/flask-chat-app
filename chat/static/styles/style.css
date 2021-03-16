@@ -19,3 +19,17 @@
 .forgot-btn {
   margin-top: 17px;
 }
+
+.chat-input {
+  width: 50%;
+  padding: 40px;
+  margin-left: 20px;
+  margin-right: 100px;
+}
+.message_holder {
+  height: 300px;
+}
+.submit-button {
+  border: 10px green solid;
+  border-radius: 10px;
+}

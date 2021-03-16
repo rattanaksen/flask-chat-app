@@ -1,16 +1,12 @@
-{% extends 'base.html' %} {% block title %}Chat{% endblock %} {% block container
-%}
-<h1>Hello</h1>
-<h1>Hello</h1>
-<h1>Hello</h1>
-<h1>Hello</h1>
-<h1>Hello</h1>
-<h1>Hello</h1>
-<h1>Hello</h1>
-<h1>Hello</h1>
-<h1>Hello</h1>
-<h1>Hello</h1>
-<h1>Hello</h1>
-<h1>Hello</h1>
+{% extends 'base.html' %} {% block container %}
+<h3 style="color: #ccc; font-size: 30px">No message yet..</h3>
+<div class="message_holder"></div>
+<div class="chatmessage">
+  <form action="" method="POST">
+    <label>Password</label>
+    <input type="text" id="textmessage" class="chat-input" />
+    <input type="submit" class="submit-button" />
+  </form>
+</div>
 
 {% endblock %}
