@@ -1,6 +1,6 @@
 .container {
   background-color: blanchedalmond;
-  max-width: 50%;
+  min-width: 50%;
   place-items: center;
   margin: 100px auto;
   padding: 30px;

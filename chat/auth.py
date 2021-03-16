@@ -1,4 +1,4 @@
-from chat import init_app
+from chat import create_app
 from flask_mail import Mail, Message
 from .model import session, User, JwtToken
 from flask import Blueprint, make_response, Flask, current_app, flash, jsonify, request, Response, redirect, render_template, url_for
@@ -56,7 +56,7 @@ def create_user():
 
 @bp.route('/reset_password/check', methods=['POST'])
 def check_reset_password():
-    app = init_app()
+    app = create_app()
     with app.app_context():
         reset_email = request.form['reset_email']
         user = session.query(User).filter_by(email=reset_email).first()
