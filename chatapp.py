@@ -1,20 +1,8 @@
-from chat import create_app
-from flask_socketio import SocketIO
-
+from chat import create_socket, create_app
 
 app = create_app()
-socketio = SocketIO(app)
-
-
-def messageReceived(methods=['GET', 'POST']):
-    print('message was received!!!')
-
-
-@socketio.on('my event')
-def handle_my_custom_event(json, methods=['GET', 'POST']):
-    print('received my event: ' + str(json))
-    socketio.emit('my response', json, callback=messageReceived)
+socket = create_socket()
 
 
 if __name__ == "__main__":
-    socketio.run(app, debug=True)
+    socket.run(app)
